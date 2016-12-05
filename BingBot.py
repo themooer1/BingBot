@@ -3,10 +3,12 @@ from selenium import webdriver
 import random
 from time import sleep
 
-searches = 30
-mobilesearches = 30
+maxsearches = 50
+minsearches = 30
 maxdelay = 500
-username = 'USERNAME@live.com/@outlook.com/@msn.com'
+#username = 'USERNAME@live.com/@outlook.com/@msn.com'
+#password = 'PASSWORD'
+username = 'bob@live.com'
 password = 'PASSWORD'
 
 words = open('words.txt','r').read().split('\n')
@@ -61,7 +63,7 @@ def login(b):
 b = Browser("chrome")
 b = login(b)
 sleep(1)
-for j in range(0,searches):
+for j in range(0,random.choice(range(minsearches,maxsearches))):
      b.visit('https://www.bing.com')
      sleep((random.random() * 2)+1)
      b.fill('q',queryGen(sentence(words)))
@@ -77,7 +79,7 @@ chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option("mobileEmulation",mobile_emulation)
 b = Browser("chrome",options=chrome_options)
 b = login(b)
-for j in range(0,mobilesearches):
+for j in range(0,random.choice(range(minsearches,maxsearches))):
     b.visit('https://www.bing.com')
     sleep((random.random() * 2)+1)
     b.fill('q',queryGen(sentence(words)))
@@ -85,3 +87,4 @@ for j in range(0,mobilesearches):
     sleep(random.random() * 5)
     go.click()
     sleep(random.random() * 20)
+b.quit()

@@ -2,6 +2,7 @@ from splinter import Browser
 from selenium import webdriver
 import random
 from time import sleep
+from feedparser import parse as p
 
 maxsearches = 50
 minsearches = 30
@@ -11,10 +12,24 @@ maxdelay = 500
 username = 'bob@live.com'
 password = 'PASSWORD'
 
+StackExchangeFeed = ""
+
 words = open('words.txt','r').read().split('\n')
 print('\nPartial Wordlist: \n')
-for i in range(0,20):
-    print(words[i])
+for i in range(0,10):
+    print(random.choice(words))
+
+def fQueryGen(partial):
+    global StackExchangeFeed
+    if len(StackExchangeFeed) != 0:
+        try:
+            return random.choice([elem['title'][0:-20] for elem in p(StackExchangeFeed)['entries']])
+        except:
+            print("Stack Exchange failed!")
+            return queryGen(partial)
+    else:
+        return queryGen(partial)
+
 def queryGen(partial):
     struct=random.choice(range(0,4))
     print("Structure: " + str(struct))
@@ -66,7 +81,7 @@ sleep(1)
 for j in range(0,random.choice(range(minsearches,maxsearches))):
      b.visit('https://www.bing.com')
      sleep((random.random() * 2)+1)
-     b.fill('q',queryGen(sentence(words)))
+     b.fill('q',fQueryGen(sentence(words)))
      go = b.find_by_id('sb_form_go').first
      sleep(random.random() * 5)
      go.click()
@@ -82,7 +97,7 @@ b = login(b)
 for j in range(0,random.choice(range(minsearches,maxsearches))):
     b.visit('https://www.bing.com')
     sleep((random.random() * 2)+1)
-    b.fill('q',queryGen(sentence(words)))
+    b.fill('q',fQueryGen(sentence(words)))
     go = b.find_by_id('sbBtn').first
     sleep(random.random() * 5)
     go.click()

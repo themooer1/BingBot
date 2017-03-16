@@ -1,4 +1,4 @@
-# BingBot
+# BingBot <a href="/to/themooer1"><img src="https://img.shields.io/badge/Say%20Thanks!-🦉-1EAEDB.svg"></a>
 A simple Bing Rewards automation program written in Python 3 with support for both mobile and desktop searches.
 
 Simply fill in the values at the top of the file with Bing credentials, adjust the search numbers to you liking, 

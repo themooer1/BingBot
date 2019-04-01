@@ -68,7 +68,7 @@ def login(b):
     login.click() # Submit password
     return b
 
-b = Browser("chrome")
+b = Browser("chrome", user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240")
 b = login(b)
 sleep(1)
 # Perform random number of desktop searches.
@@ -83,7 +83,7 @@ for j in range(0,random.choice(range(minsearches,maxsearches))):
 b.quit()
 
 # Perform random number of mobile searches.
-mobile_emulation = {"deviceName": "Google Nexus 5"} # Set user agent to Nexus 5
+mobile_emulation = {"deviceName": "Nexus 5"} # Set user agent to Nexus 5
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option("mobileEmulation",mobile_emulation)
 b = Browser("chrome",options=chrome_options)

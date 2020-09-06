@@ -6,7 +6,8 @@ and watch (or don't) as it searches Bing with randomly generated queries for you
 
 <h2>Chromedriver</h2>
 <strong>Windows Users</strong><br>
-<article>Make sure that the chromedriver exe is in your python directory or this will not work.<br>  
+<article>Download the latest ChromeDriver here: <a href="https://chromedriver.chromium.org/">https://chromedriver.chromium.org/</a>
+Make sure that the chromedriver exe is in your python directory or this will not work.<br>  
 <strong>Everyone Else</strong><br>
 <article>Install chromedriver through brew on Mac OS, or your package manager on Linux.</article><br>
 <h2>Stack Exchange Search</h2>
